@@ -1,3 +1,7 @@
+
+//programa que simula el joc del penjat
+//demana 1 mot i 1 lletra
+//6 intents
 function ElPenjat(){
     console.log("1. Iniciar un joc" + '\n' + "2. Estadístiques" + '\n' + "3. Sortir");
     
@@ -10,6 +14,7 @@ function ElPenjat(){
             let entrada = prompt("Entra paraula").toLowerCase(); 
             let longitud = entrada.length;
             let mot_espais = "";    
+            let arrEntrada = [];
             
             //mot amb espais en cop de lletres
             for (let i=0; i<longitud; i++){
@@ -17,32 +22,25 @@ function ElPenjat(){
             }
             console.log(mot_espais);
 
-            //demanem una lletra a l'usuari
-            let lletra = "m";
-            let cerca_lletra = lletra.match(/[abcdefghijklmnoprstqwyñçvxz]/g);
-            while ((lletra.length == 1) && (cerca_lletra)){
-                lletra = prompt("Entra una lletra:").toLowerCase();
-                cerca_lletra = lletra.match(/[abcdefghijklmnoprstqwyñçvxz]/g);
-                if ((lletra.length == 1) && (cerca_lletra)) {
-                    console.log("Es una lletra\n " + lletra);
-                    return;
+            for (let m=0; m<entrada.length; m++){
+                arrEntrada[m] = entrada.charAt(m);
+            }
 
-                } else {
-                    console.log("no es una lletra");
-                }
+            //demanem una lletra a l'usuari
+            //fa comprovacions
+            let lletra = "";
+            do {
+                lletra = prompt("Entra una lletra:").toLowerCase();
+            } while (lletra.length !== 1 || !/[abcçdefghijklmnñopqrstvxwyz]/.test(lletra)) {
                 
+                console.log(`El mot introduit és: ${arrEntrada}`);
             }
             
-
-            //let result = text.match(/[aeiou]/g);
-
-
 
 
             
         } else if (num == 2) {
             console.log("Entra a estadístiques");
-
         } else if (num == 3) {
             console.log("Sortida");
             return;
@@ -52,6 +50,4 @@ function ElPenjat(){
 
 
     }
-    console.log("El programa sigue");
-
 }
