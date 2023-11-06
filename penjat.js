@@ -1,3 +1,39 @@
+//funció que trasforma un array a string
+function ArrayToStr(myArr){
+    let new_str = "";
+    for (let i=0; i<myArr.length; i++){
+        new_str = new_str + myArr[i];
+    }
+    return new_str;
+}
+
+//funció que transforma un string a array
+function StrToArray(paraula){
+    let new_arr = [];
+    for (let i=0; i<paraula.length; i++){
+        new_arr[i] = paraula.charAt(i);
+    }
+    return new_arr;
+}
+
+//funció que cerca i substitueix la lletra trobada
+function BuscaLetraEnPalabra(array_str, letra){
+    for (let i=0; i<array_str.length; i++){
+        if (array_str[i] === letra){
+
+        }
+    }
+}
+
+//funció que torna true si troba la lletra en el mot
+function LletraDinsMot(lletra, mot){
+    for(let i=0; i<mot.length; i++){
+        if(mot.charAt(i) === lletra){
+            return true;
+        }
+        return false;
+    }
+} 
 
 //programa que simula el joc del penjat
 //demana 1 mot i 1 lletra
@@ -33,6 +69,18 @@ function ElPenjat(){
                 lletra = prompt("Entra una lletra:").toLowerCase();
             } while (lletra.length !== 1 || !/[abcçdefghijklmnñopqrstvxwyz]/.test(lletra)) {
                 
+                let intents;  //intents
+                
+                // miro si la letra está entre las letras de la palabra introducida
+                if (LletraDinsMot(lletra, mot)){
+
+                } else {
+                    intents++;
+                }
+
+
+
+
                 console.log(`El mot introduit és: ${arrEntrada}`);
             }
             
