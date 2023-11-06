@@ -47,16 +47,19 @@ function QuedenEspais(myArr){
     return false;
 }
 
-//funció que cerca lletres en un mot i retorna un array amb la posició d'aquestes
-function posicioLletresTrobades(paraula, lletra){
-    let arrPosicions = [];
-    for (let i=0; i<paraula.length; i++){
-        if (paraula.charAt(i) === lletra){
-            arrPosicions += i;
+
+//comprobació si ha hagut canvi en l'array abans i després de comprobar si la lletra hi és
+function compareArrays(array1, array2){
+    for (let m=0; m<array1.length; m++){
+        if (array1[m] !== array2[m]){
+            return true;
+        } else {
+            return false;
         }
     }
-    return arrPosicions;
 }
+
+
 
 
 
@@ -102,6 +105,7 @@ function ElPenjat(){
             //demanem una lletra a l'usuari
             //fa comprovacions
             let lletra = "";
+            let lletra_fallida = "";
             do {
                 lletra = prompt("Entra una lletra:").toLowerCase();
             } while (lletra.length !== 1 || !/[a-z]/.test(lletra)) {
@@ -112,21 +116,26 @@ function ElPenjat(){
                 while (errors < 7) {
 
                     while (QuedenEspais(array_espais)){
+                        let array_abans = array_espais.slice();
+                        console.log(array_abans);
                         for (let j=0; j<arrEntrada.length; j++){
                             if (arrEntrada[j]==lletra){
                                 array_espais[j] = lletra;
                             }
                         }
-
                         console.log(array_espais);
-                        
-//para sumar un error tendré que comprobar primero si no se ha modificado el array tras recorrer todo bucle for
 
-                        if (errors >= 6) {
-                            console.log("Game over");
-                            return;
+
+                        if (compareArrays(array_abans, array_espais)){
+                            errors++;
+                            lletra_fallida = lletra_fallida + ", " + lletra;
+                            console.log(`Lletres fallades ${errors}/6: ${lletra_fallida}`);
+                            if (errors >= 6) {
+                                console.log("Game over");
+                                return;
+                            }
                         }
-                        
+               
 
 
                         /*
