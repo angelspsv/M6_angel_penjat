@@ -20,7 +20,8 @@ function StrToArray(paraula){
 function BuscaLetraEnPalabra(array_str, letra){
     for (let i=0; i<array_str.length; i++){
         if (array_str[i] === letra){
-
+            //no acabat
+            // XXX
         }
     }
 }
@@ -35,6 +36,20 @@ function LletraDinsMot(lletra, mot){
     }
 } 
 
+//funció que comprova si encara queden lletres per endevinar
+function QuedenEspais(myArr){
+    for (let i=0; i<myArr.length; i++){
+        if (myArr[i] === "_"){
+            return true;
+        }
+        return false;
+    }
+}
+
+//  ________________|
+//  |               |
+//  |----o<-<       |
+//
 //programa que simula el joc del penjat
 //demana 1 mot i 1 lletra
 //6 intents
@@ -49,16 +64,24 @@ function ElPenjat(){
         if (num == 1) {
             let entrada = prompt("Entra paraula").toLowerCase(); 
             let longitud = entrada.length;
-            let mot_espais = "";    
+            let mot_espais = "";
+            let mostra_mot = "";    
             let arrEntrada = [];
             
-            //mot amb espais en cop de lletres
+            //mot amb espais junts en cop de lletres
             for (let i=0; i<longitud; i++){
-                mot_espais = mot_espais + " _";
+                mot_espais = mot_espais + "_";
             }
-            console.log(mot_espais);
+            //console.log(mot_espais);
 
-            for (let m=0; m<entrada.length; m++){
+            //mostra el mot amb els espais separats, es veu més clar la seva longitud
+            for (let i=0; i<longitud; i++){
+                mostra_mot += mot_espais[i] + " ";
+            }
+            console.log(mostra_mot);
+
+            //aquí el mot de lletres està en format array
+            for (let m=0; m<entrada.length; m++){   
                 arrEntrada[m] = entrada.charAt(m);
             }
 
@@ -69,23 +92,32 @@ function ElPenjat(){
                 lletra = prompt("Entra una lletra:").toLowerCase();
             } while (lletra.length !== 1 || !/[abcçdefghijklmnñopqrstvxwyz]/.test(lletra)) {
                 
-                let intents;  //intents
-                
-                // miro si la letra está entre las letras de la palabra introducida
-                if (LletraDinsMot(lletra, mot)){
+                let array_espais = StrToArray(mot_espais);
+                let intents = 0;  //intents fallits
+                //bucle que funcionarà fins que quedin intents disponibles o lletres per endivinar
+                while (intents < 7) {
+                    console.log("Passa while intents");
 
-                } else {
-                    intents++;
+                    if (QuedenEspais(array_espais)){
+                        console.log("Passa array espais");
+
+                        //aquí substituir les espais de les lletres endevinades per les lletres i mostrar la nova situació
+
+                        return;
+
+
+                    } else {
+                        intents++;
+                        if (intents == 6) {
+                            console.log("Game over");
+                            return;
+                        }
+                    }
                 }
 
 
-
-
-                console.log(`El mot introduit és: ${arrEntrada}`);
             }
             
-
-
             
         } else if (num == 2) {
             console.log("Entra a estadístiques");
