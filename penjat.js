@@ -16,25 +16,26 @@ function StrToArray(paraula){
     return new_arr;
 }
 
-//funció que cerca i substitueix la lletra trobada
-function BuscaLetraEnPalabra(array_str, letra){
-    for (let i=0; i<array_str.length; i++){
-        if (array_str[i] === letra){
-            //no acabat
-            // XXX
-        }
-    }
-}
-
 //funció que torna true si troba la lletra en el mot
 function LletraDinsMot(lletra, mot){
     for(let i=0; i<mot.length; i++){
         if(mot.charAt(i) === lletra){
             return true;
         }
-        return false;
     }
-} 
+    return false;
+}
+
+//funció que cerca si una lletra està en l'array
+function buscaLletraEnArray(lletra, myArr){
+    for (let i=0; i<myArr.length; i++){
+        if(myArr[i] === lletra){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 //funció que comprova si encara queden lletres per endevinar
 function QuedenEspais(myArr){
@@ -42,9 +43,22 @@ function QuedenEspais(myArr){
         if (myArr[i] === "_"){
             return true;
         }
-        return false;
     }
+    return false;
 }
+
+//funció que cerca lletres en un mot i retorna un array amb la posició d'aquestes
+function posicioLletresTrobades(paraula, lletra){
+    let arrPosicions = [];
+    for (let i=0; i<paraula.length; i++){
+        if (paraula.charAt(i) === lletra){
+            arrPosicions += i;
+        }
+    }
+    return arrPosicions;
+}
+
+
 
 //  ________________|
 //  |               |
@@ -90,35 +104,43 @@ function ElPenjat(){
             let lletra = "";
             do {
                 lletra = prompt("Entra una lletra:").toLowerCase();
-            } while (lletra.length !== 1 || !/[abcçdefghijklmnñopqrstvxwyz]/.test(lletra)) {
+            } while (lletra.length !== 1 || !/[a-z]/.test(lletra)) {
                 
                 let array_espais = StrToArray(mot_espais);
-                let intents = 0;  //intents fallits
+                let errors = 0;  //intents fallits
                 //bucle que funcionarà fins que quedin intents disponibles o lletres per endivinar
-                while (intents < 7) {
-                    console.log("Passa while intents");
+                while (errors < 7) {
 
-                    if (QuedenEspais(array_espais)){
-                        console.log("Passa array espais");
+                    while (QuedenEspais(array_espais)){
+                        for (let j=0; j<arrEntrada.length; j++){
+                            if (arrEntrada[j]==lletra){
+                                array_espais[j] = lletra;
+                            }
+                        }
 
-                        //aquí substituir les espais de les lletres endevinades per les lletres i mostrar la nova situació
+                        console.log(array_espais);
+                        
+//para sumar un error tendré que comprobar primero si no se ha modificado el array tras recorrer todo bucle for
 
-                        return;
-
-
-                    } else {
-                        intents++;
-                        if (intents == 6) {
+                        if (errors >= 6) {
                             console.log("Game over");
                             return;
                         }
+                        
+
+
+                        /*
+                        if (!(QuedenEspais(array_espais))){
+                            console.log("Enhorabona! Has encertat la paraula.");
+                            ElPenjat();
+                        }
+                        */
+                        lletra = prompt("Entra una lletra:").toLowerCase();
+                        
                     }
                 }
-
-
             }
-            
-            
+
         } else if (num == 2) {
             console.log("Entra a estadístiques");
         } else if (num == 3) {
