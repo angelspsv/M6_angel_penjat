@@ -63,12 +63,12 @@ function LletraDinsMot(lletra, mot){
 //6 intents
 function ElPenjat(){
     console.log("1. Iniciar un joc" + '\n' + "2. Estadístiques" + '\n' + "3. Sortir");
-    let cont_win = 0;
-    let cont_lost = 0;
+    let win = 0;
+    let lost = 0;
     
     let num = 5;
 
-    while (num > 3 || num < 1) {
+    while (true) {
         num = parseInt(prompt("Tria el número de l'opció que vols:"));
 
         if (num == 1) {
@@ -108,7 +108,7 @@ function ElPenjat(){
                         let str_temp = "_";
                         if (!LletraDinsMot(str_temp, mot_per_endevinar.toString())) {
                             console.log(`Enhorabona! Has endevinat el mot: ${entrada}`);
-                            cont_win++;
+                            win++;
                             break;
                         }
                     } else {
@@ -123,15 +123,15 @@ function ElPenjat(){
 
             if (errors >= 6){
                 console.log(`Has mort. El mot per endevinar era: ${entrada}`);
-                cont_lost++;
+                lost++;
             }
         //altres opcions del joc
         } else if (num == 2) {
             console.log("Entra a estadístiques");
-            let total_partides = cont_lost + cont_win;
+            let total_partides = lost + win;
             console.log(`Total de partides: ${total_partides}`);
-            console.log("Partides guanyades (" + ((cont_win/total_partides)*100) + "%): " + cont_win);
-            console.log("Partides perdudes (" + ((cont_lost/total_partides)*100) + "%): " + cont_lost);
+            console.log("Partides guanyades (" + ((win/total_partides)*100) + "%): " + win);
+            console.log("Partides perdudes (" + ((lost/total_partides)*100) + "%): " + lost);
         } else if (num == 3) {
             console.log("Sortida");
             return;
