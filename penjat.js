@@ -41,7 +41,7 @@ function ArrToStr_coma(myArr){
 //funció que torna true si troba la lletra en el mot
 function LletraDinsMot(lletra, mot){
     for(let i=0; i<mot.length; i++){
-        if(mot.charAt(i) === lletra){
+        if(mot.charAt(i) == lletra){
             return true;
         }
     }
@@ -69,6 +69,7 @@ function ElPenjat(){
         num = parseInt(prompt("Tria el número de l'opció que vols:"));
 
         if (num == 1) {
+            //demana un mot a l'usuari
             let entrada = prompt("Entra paraula").toLowerCase(); 
             let mot_per_endevinar = SubstitueixLletresPerGuions(entrada);
             let lletres_errors = [];
@@ -76,15 +77,19 @@ function ElPenjat(){
             let lletra = "";
 
             while (errors <= 6){
+                //mostra el mot amb espais
                 let arr_tmp = ArrToStr_space(mot_per_endevinar);
                 console.log(`Paraula per endevinar: ${arr_tmp}`);
 
+                //mostra les lletres fallides amb comes
                 let arr_tmp2 = ArrToStr_coma(lletres_errors);
                 console.log(`Lletres fallides: ${arr_tmp2}`);
                 console.log(`Errors: ${errors}/6`);
 
+                //si arriba als 6 intents fallits -> game over
                 if (errors == 6) break;
 
+                //demana lletra i comproba que sigui una lletra
                 lletra = prompt("Entra una lletra:").toLowerCase();
 
                 if (lletra.length !== 1 || !/[a-z]/.test(lletra)){
@@ -96,19 +101,28 @@ function ElPenjat(){
                                 mot_per_endevinar[i] = lletra;
                             }
                         }
-                        let str_temp = '_';
-                        if (!LletraDinsMot(str_temp, mot_per_endevinar)) {
+                        //evalua si queden més lletres per endevinar
+                        let str_temp = "_";
+                        if (!LletraDinsMot(str_temp, mot_per_endevinar.toString())) {
                             console.log(`Enhorabona! Has endevinat el mot: ${entrada}`);
                             break;
                         }
                     } else {
-
+                        //afegeix les lletres fallides
+                        if (! LletraDinsMot(lletra, lletres_errors.toString())){
+                            lletres_errors.push(lletra);
+                            errors++;
+                        }
                     }
                 }
 
 
             }
 
+            if (errors >= 6){
+                console.log(`Has mort. El mot per endevinar era: ${entrada}`);
+            }
+        //altres opcions del joc
         } else if (num == 2) {
             console.log("Entra a estadístiques");
         } else if (num == 3) {
