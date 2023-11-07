@@ -38,6 +38,16 @@ function ArrToStr_coma(myArr){
     return new_str;
 }
 
+//funció que torna true si troba la lletra en el mot
+function LletraDinsMot(lletra, mot){
+    for(let i=0; i<mot.length; i++){
+        if(mot.charAt(i) === lletra){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 
@@ -73,7 +83,28 @@ function ElPenjat(){
                 console.log(`Lletres fallides: ${arr_tmp2}`);
                 console.log(`Errors: ${errors}/6`);
 
+                if (errors == 6) break;
 
+                lletra = prompt("Entra una lletra:").toLowerCase();
+
+                if (lletra.length !== 1 || !/[a-z]/.test(lletra)){
+                    console.log("Només pots introduir una lletra:");
+                } else {
+                    if (LletraDinsMot(lletra, entrada)) {
+                        for (let i=0; i<entrada.length; i++){
+                            if (entrada[i] == lletra) {
+                                mot_per_endevinar[i] = lletra;
+                            }
+                        }
+                        let str_temp = '_';
+                        if (!LletraDinsMot(str_temp, mot_per_endevinar)) {
+                            console.log(`Enhorabona! Has endevinat el mot: ${entrada}`);
+                            break;
+                        }
+                    } else {
+
+                    }
+                }
 
 
             }
