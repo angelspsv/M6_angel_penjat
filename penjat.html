@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="penjat.js"></script>
     <title>Joc del penjat</title>
+    <style>
+        .joc {
+            width: 100%;
+            height: 500px;
+            padding-top: 50px;
+            text-align: center;
+        }
+
+        #inicio {
+            background-color: green;
+            color: white;
+        }
+
+        #estadisticas{
+            background-color: rgb(43, 184, 231);
+        }
+
+        #letras{
+            padding-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <button onclick="ElPenjat()">Jugar al Penjat!</button>
@@ -14,32 +35,7 @@
         <button id="estadisticas">Estadísticas</button>
 
         <div id="letras">
-            <button class="letra">A</button>
-            <button class="letra">B</button>
-            <button class="letra">C</button>
-            <button class="letra">D</button>
-            <button class="letra">E</button>
-            <button class="letra">F</button>
-            <button class="letra">G</button>
-            <button class="letra">H</button>
-            <button class="letra">I</button>
-            <button class="letra">J</button>
-            <button class="letra">K</button>
-            <button class="letra">L</button>
-            <button class="letra">M</button>
-            <button class="letra">N</button>
-            <button class="letra">O</button>
-            <button class="letra">P</button>
-            <button class="letra">Q</button>
-            <button class="letra">R</button>
-            <button class="letra">S</button>
-            <button class="letra">T</button>
-            <button class="letra">U</button>
-            <button class="letra">V</button>
-            <button class="letra">W</button>
-            <button class="letra">X</button>
-            <button class="letra">Y</button>
-            <button class="letra">Z</button>
+            <button onclick="init_buttons();">init_buttons</button>
         </div>
 
     </div>
