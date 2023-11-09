@@ -65,6 +65,13 @@ function procesaLletra(lletra){
 }
 
 
+function novaPartida(){
+    ElPenjat();
+    init_buttons();
+}
+
+
+
 //  ________________|
 //  |               |
 //  |----o<-<       |
