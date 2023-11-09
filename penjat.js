@@ -49,9 +49,20 @@ function LletraDinsMot(lletra, mot){
     return false;
 }
 
+function init_buttons(){
+    let text = "";
+    let abc = "abcdefghijklmnopqrstuvwxyz";
+    for (let i=0; i<abc.length; i++){
+        text += `<button id="${abc[i]}" onclick='procesaLletra("${abc[i]}");'>${abc[i]}</button>`;
+    } 
+    let div1 = document.getElementById("letras");
+    console.log(text);
+    div1.innerHTML = text;
+}
 
-
-
+function procesaLletra(lletra){
+    console.log(lletra);
+}
 
 
 //  ________________|
