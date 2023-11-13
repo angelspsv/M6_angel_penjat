@@ -1,4 +1,3 @@
-
 //funció que canvia les lletres per guions
 function SubstitueixLletresPerGuions(entrada){
     let new_arr = [];
@@ -67,7 +66,7 @@ function procesaLletra(lletra){
 
 function novaPartida(){
     ElPenjat();
-    init_buttons();
+    //sinit_buttons();
 }
 
 
