@@ -48,6 +48,7 @@ function LletraDinsMot(lletra, mot){
     return false;
 }
 
+//funció que crea un teclat dinàmic de lletres
 function init_buttons(){
     let text = "";
     let abc = "abcdefghijklmnopqrstuvwxyz";
@@ -59,6 +60,7 @@ function init_buttons(){
     div1.innerHTML = text;
 }
 
+//funció que mostra al navegador la lletra triada per l'usuari en el teclat dinàmic 
 function procesaLletra(lletra){
     console.log(lletra);
 }
@@ -66,7 +68,6 @@ function procesaLletra(lletra){
 
 function novaPartida(){
     ElPenjat();
-    //sinit_buttons();
 }
 
 
@@ -157,3 +158,7 @@ function ElPenjat(){
         }
     }
 }
+
+window.addEventListener("load", function() {
+    init_buttons();
+});
