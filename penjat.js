@@ -54,7 +54,8 @@ function init_buttons(){
     let abc = "abcdefghijklmnopqrstuvwxyz";
     for (let i=0; i<abc.length; i++){
         text += `<button id="${abc[i]}" onclick='procesaLletra("${abc[i]}");'>${abc[i]}</button>`;
-    } 
+    }
+    //'letras' és l'id del div container on apareixerà  
     let div1 = document.getElementById("letras");
     console.log(text);
     div1.innerHTML = text;
@@ -63,6 +64,13 @@ function init_buttons(){
 //funció que mostra al navegador la lletra triada per l'usuari en el teclat dinàmic 
 function procesaLletra(lletra){
     console.log(lletra);
+}
+
+
+//id = lletresPerEndevinar
+function procesaMotOcult(paraula){
+    let mostraMotElement = document.getElementById("lletresPerEndevinar");
+    mostraMotElement.innerHTML = paraula;
 }
 
 
@@ -101,6 +109,7 @@ function ElPenjat(){
                 //mostra el mot amb espais
                 let arr_tmp = ArrToStr_space(mot_per_endevinar);
                 console.log(`Paraula per endevinar: ${arr_tmp}`);
+                procesaMotOcult(arr_tmp);
 
                 //mostra les lletres fallides amb comes
                 let arr_tmp2 = ArrToStr_coma(lletres_errors);
