@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="penjat_bom.js"></script>
+    <title>Joc del penjat</title>
+    <style>
+        .joc {
+            width: 100%;
+            height: 700px;
+            padding-top: 200px;
+            text-align: center;
+        }
+
+        #inicio {
+            background-color: green;
+            color: white;
+        }
+
+        #estadisticas{
+            background-color: rgb(43, 184, 231);
+        }
+
+        #reiniciar{
+            background-color: cadetblue;
+        }
+
+        #letras{
+            padding-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="joc">
+        <button id="inicio" onclick="NovaPartida()">Inici de partida</button>
+
+        <button id="estadisticas" onclick="">Estadístiques</button>
+
+        <button id="reiniciar" onclick="">Reiniciar estadístiques</button>
+
+        <div id="letras"></div>
+
+        <div id="lletresPerEndevinar"></div>
+
+        <div id="lletresUtilitzades"></div>
+
+    </div>
+</body>
+</html>
