@@ -1,17 +1,27 @@
 //variables globales
 let win = 0;
 let lose = 0;
+let errors = 0;
 
 
 function NovaPartida(){
+    let letra = "";
+    
     //pide la palabra por adivinar al usuario
     let palabra = prompt("Entra una paraula:");
+
+    //convierte la palabra con _ y " "
     let palabra_espacios = StrAmbEspais(palabra);
+
+    //muestra la palabra con espacios
     procesaMotOcult(palabra_espacios);
-    while (lose<=6){
-        
+    
+    if(errors<7){
 
 
+        //s'evalua cada cop que l'usuari introdueix una lletra
+
+    } else {
 
     }
 }
@@ -48,4 +58,28 @@ function StrAmbEspais(word) {
 function procesaMotOcult(paraula){
     let mostraMotElement = document.getElementById("lletresPerEndevinar");
     mostraMotElement.innerHTML = paraula;
+}
+
+//función que recoge la letra del teclado dinámico
+//comprueba si está o no dentro de la palabra
+function procesaLletra(lletra){
+    if(LletraDinsMot(lletra, palabra)){
+
+
+    } else {
+        errors++;
+    }
+    
+    
+    alert(lletra);
+}
+
+//funció que torna true si troba la lletra en el mot
+function LletraDinsMot(lletra, mot){
+    for(let i=0; i<mot.length; i++){
+        if(mot.charAt(i) == lletra){
+            return true;
+        }
+    }
+    return false;
 }
